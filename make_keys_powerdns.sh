@@ -10,10 +10,7 @@
 
 KEYDIR=/usr/local/etc/mail/keys
 KEYLEN=2048
-BASEDOM=example.com
-
-/usr/local/sbin/opendkim-genkey --note=$BASEDOM --domain=$BASEDOM --bits=$KEYLEN --restrict --directory=$KEYDIR
-
+BASEDOM=example.dom
 
 SUBDOM=$(cat <<EOS
 foo
@@ -34,7 +31,3 @@ do
   shift
 done
 
-
-cd $KEYDIR
-
-#  sed "s/[()]//g" | awk 'BEGIN { getline ; sl0=length($0); s0=substr($0,0,(sl0-1)); getline; sl1=length($0) ; s1=substr($0,5,(sl1-1)); getline; sl2=length($0); s2=substr($1,5,(sl2)); printf("%s%s%s\n", s0,s1,s2)  }'
